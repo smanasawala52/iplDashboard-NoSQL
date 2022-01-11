@@ -11,7 +11,6 @@
 	<groupId>com.example</groupId>
 	<artifactId>ipl-dashboard-nosql</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>ipl-dashboard-nosql</name>
 	<description>IPL Dashboard using no SQL only using maps</description>
 	<properties>
