@@ -16,4 +16,9 @@ public class TeamRepository {
 		return null;
 	}
 
+	public void saveAll(List<Team> teams) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

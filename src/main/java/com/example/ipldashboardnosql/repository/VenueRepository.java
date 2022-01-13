@@ -29,4 +29,9 @@ public class VenueRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void saveAll(List<Venue> venues) {
+		// TODO Auto-generated method stub
+
+	}
 }
