@@ -17,6 +17,17 @@ public class Match implements Comparable<Match> {
 	private String umpire2;
 	private String tossWinner;
 	private String tossDecision;
+	private String eventStage;
+	private String eventMatchNumber;
+	private String eventGroup;
+
+	@Override
+	public int compareTo(Match o) {
+		if (this != null && o != null && this.date != null && o.date != null) {
+			return o.date.compareTo(this.date);
+		}
+		return 0;
+	}
 
 	public Match() {
 		// TODO Auto-generated constructor stub
@@ -30,7 +41,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -44,7 +56,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param city the city to set
+	 * @param city
+	 *            the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
@@ -58,7 +71,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param date the date to set
+	 * @param date
+	 *            the date to set
 	 */
 	public void setDate(LocalDate date) {
 		this.date = date;
@@ -72,7 +86,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param playerOfMatch the playerOfMatch to set
+	 * @param playerOfMatch
+	 *            the playerOfMatch to set
 	 */
 	public void setPlayerOfMatch(String playerOfMatch) {
 		this.playerOfMatch = playerOfMatch;
@@ -86,7 +101,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param venue the venue to set
+	 * @param venue
+	 *            the venue to set
 	 */
 	public void setVenue(String venue) {
 		this.venue = venue;
@@ -100,7 +116,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param team1 the team1 to set
+	 * @param team1
+	 *            the team1 to set
 	 */
 	public void setTeam1(String team1) {
 		this.team1 = team1;
@@ -114,7 +131,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param team2 the team2 to set
+	 * @param team2
+	 *            the team2 to set
 	 */
 	public void setTeam2(String team2) {
 		this.team2 = team2;
@@ -128,7 +146,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param winner the winner to set
+	 * @param winner
+	 *            the winner to set
 	 */
 	public void setWinner(String winner) {
 		this.winner = winner;
@@ -142,7 +161,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param result the result to set
+	 * @param result
+	 *            the result to set
 	 */
 	public void setResult(String result) {
 		this.result = result;
@@ -156,7 +176,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param resultMargin the resultMargin to set
+	 * @param resultMargin
+	 *            the resultMargin to set
 	 */
 	public void setResultMargin(int resultMargin) {
 		this.resultMargin = resultMargin;
@@ -170,7 +191,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param umpire1 the umpire1 to set
+	 * @param umpire1
+	 *            the umpire1 to set
 	 */
 	public void setUmpire1(String umpire1) {
 		this.umpire1 = umpire1;
@@ -184,7 +206,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param umpire2 the umpire2 to set
+	 * @param umpire2
+	 *            the umpire2 to set
 	 */
 	public void setUmpire2(String umpire2) {
 		this.umpire2 = umpire2;
@@ -198,7 +221,8 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param tossWinner the tossWinner to set
+	 * @param tossWinner
+	 *            the tossWinner to set
 	 */
 	public void setTossWinner(String tossWinner) {
 		this.tossWinner = tossWinner;
@@ -212,26 +236,56 @@ public class Match implements Comparable<Match> {
 	}
 
 	/**
-	 * @param tossDecision the tossDecision to set
+	 * @param tossDecision
+	 *            the tossDecision to set
 	 */
 	public void setTossDecision(String tossDecision) {
 		this.tossDecision = tossDecision;
 	}
 
-	@Override
-	public String toString() {
-		return "Match [id=" + id + ", city=" + city + ", date=" + date + ", playerOfMatch=" + playerOfMatch + ", venue="
-				+ venue + ", team1=" + team1 + ", team2=" + team2 + ", winner=" + winner + ", result=" + result
-				+ ", resultMargin=" + resultMargin + ", umpire1=" + umpire1 + ", umpire2=" + umpire2 + ", tossWinner="
-				+ tossWinner + ", tossDecision=" + tossDecision + "]";
+	/**
+	 * @return the eventStage
+	 */
+	public String getEventStage() {
+		return eventStage;
 	}
 
-	@Override
-	public int compareTo(Match o) {
-		if (this != null && o != null && this.date != null && o.date != null) {
-			return o.date.compareTo(this.date);
-		}
-		return 0;
+	/**
+	 * @param eventStage
+	 *            the eventStage to set
+	 */
+	public void setEventStage(String eventStage) {
+		this.eventStage = eventStage;
+	}
+
+	/**
+	 * @return the eventMatchNumber
+	 */
+	public String getEventMatchNumber() {
+		return eventMatchNumber;
+	}
+
+	/**
+	 * @param eventMatchNumber
+	 *            the eventMatchNumber to set
+	 */
+	public void setEventMatchNumber(String eventMatchNumber) {
+		this.eventMatchNumber = eventMatchNumber;
+	}
+
+	/**
+	 * @return the eventGroup
+	 */
+	public String getEventGroup() {
+		return eventGroup;
+	}
+
+	/**
+	 * @param eventGroup
+	 *            the eventGroup to set
+	 */
+	public void setEventGroup(String eventGroup) {
+		this.eventGroup = eventGroup;
 	}
 
 }
