@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.ipldashboardnosql.model.Match;
+import com.example.ipldashboardnosql.model.MatchBuilder;
 import com.example.ipldashboardnosql.model.MatchInputJson;
 import com.example.ipldashboardnosql.model.Venue;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,8 +27,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class DataService {
 	private List<Match> matches = new CopyOnWriteArrayList<>();
-	private Map<Long, Match> matchesMap = new ConcurrentHashMap<Long, Match>();
 	private List<Venue> venues = new CopyOnWriteArrayList<>();
+	private String dirLocation = "ipl_json";
 
 	public List<Match> getMatches() {
 		return matches;
@@ -43,21 +44,25 @@ public class DataService {
 	@PostConstruct
 	public void loadMatchData() throws Exception {
 		System.out.println("Dataloading started");
-		String dirLocation = "ipl_json";
+
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/yyyy");
 		try {
 			List<File> files = Files.list(Paths.get(dirLocation)).map(Path::toFile).collect(Collectors.toList());
 			for (File file : files) {
-				file.getPath();
-//				JsonParser parser = JsonParserFactory.getJsonParser();
-
 				try {
 					MatchInputJson value = objectMapper.readValue(new File(file.getPath()), MatchInputJson.class);
-					System.out.println(value);
-//					FileReader reader = new FileReader(file.getPath());
-//					parser.parseMap(reader.)
-//					Map<String, Object> obj = parser.parseMap(new FileReader(file.getPath()));
-//					new ObjectMapper().readValue(resource.getInputStream(), Map.class);
+					// System.out.println(value);
+					Match match = new MatchBuilder().setId(Long.valueOf(file.getName().replace(".json", "")))
+							.setCity(value.getInfo().getCity())
+							.setDate(Instant.ofEpochMilli(value.getInfo().getDates().get(0).getTime())
+									.atZone(ZoneId.systemDefault()).toLocalDate())
+							.setPlayerOfMatch(value.getInfo().getPlayerOfMatch())
+							.setOutcome(value.getInfo().getOutcome()).setTeam1(value.getInfo().getTeams().get(0))
+							.setTeam2(value.getInfo().getTeams().get(1)).setVenue(value.getInfo().getVenue())
+							.setTossDecision(value.getInfo().getToss().getDecision())
+							.setTossWinner(value.getInfo().getToss().getWinner())
+							.setOfficials(value.getInfo().getOfficials()).build();
+					getMatches().add(match);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -87,11 +92,18 @@ public class DataService {
 
 	}
 
-	public Map<Long, Match> getMatchesMap() {
-		return matchesMap;
-	}
-
 	public List<Venue> getVenues() {
 		return venues;
+	}
+
+	public MatchInputJson getMatch(Long key) {
+		try {
+			MatchInputJson value = objectMapper.readValue(new File(dirLocation + "/" + key + ".json"),
+					MatchInputJson.class);
+			return value;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

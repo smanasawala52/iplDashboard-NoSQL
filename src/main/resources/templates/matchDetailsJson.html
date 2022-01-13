@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <title>IPL Dashboard</title>
+      <meta name="description" content="" />
+      <meta name="viewport" content="width=device-width" />
+      <base href="/" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+         crossorigin="anonymous"></script>
+   </head>
+   <body>
+      <div class="container">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-bottom: 20px">
+            <div class="container-fluid">
+               <a class="navbar-brand" href="/">IPL Dashboard</a>
+            </div>
+         </nav>
+         <section class="content">
+            <h1>MatchDetails</h1>
+            <div class="card-group">
+               <div class="card-group">
+                  <div class="card" style="flex: 0 0 100%; margin: 30px;">
+                     <div class="card-body">
+                     	<p class="card-text">matchType: <small class="text-muted" th:text="${match.info.season}"></small></p>
+	               		<p class="card-text">matchType: <small class="text-muted" th:text="${match.info.matchType}"></small>, <small class="text-muted" th:text="${match.info.matchTypeNumber}"></small></p>
+	               		<p class="card-text">Venue: <small class="text-muted" th:text="${match.info.venue}"></small>, <small class="text-muted" th:text="${match.info.city}"></small></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+   </body>
+</html>

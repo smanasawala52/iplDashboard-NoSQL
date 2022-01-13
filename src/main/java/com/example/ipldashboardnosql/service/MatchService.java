@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.ipldashboardnosql.model.Match;
+import com.example.ipldashboardnosql.model.MatchInputJson;
 import com.example.ipldashboardnosql.model.Page;
 import com.example.ipldashboardnosql.repository.MatchRepository;
 
@@ -16,7 +17,7 @@ public class MatchService {
 		return matchRepository.getByOrderByDateDesc(i, pAGE_SIZE);
 	}
 
-	public Match getMatchDetails(String id) {
+	public MatchInputJson getMatchDetails(String id) {
 		return matchRepository.findById(Long.valueOf(id));
 	}
 }

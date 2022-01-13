@@ -10,6 +10,7 @@ import com.example.ipldashboardnosql.model.ICity;
 import com.example.ipldashboardnosql.model.ITeamCount;
 import com.example.ipldashboardnosql.model.IVenueCount;
 import com.example.ipldashboardnosql.model.Match;
+import com.example.ipldashboardnosql.model.MatchInputJson;
 import com.example.ipldashboardnosql.model.Page;
 import com.example.ipldashboardnosql.model.PageBuilder;
 import com.example.ipldashboardnosql.service.DataService;
@@ -133,8 +134,8 @@ public class MatchRepository {
 		return null;
 	}
 
-	public Match findById(Long key) {
-		return dataService.getMatchesMap().get(key);
+	public MatchInputJson findById(Long key) {
+		return dataService.getMatch(key);
 	}
 
 	public int getTotalMatches() {

@@ -12,7 +12,7 @@ public class Match implements Comparable<Match> {
 	private String team2;
 	private String winner;
 	private String result;
-	private String resultMargin;
+	private int resultMargin;
 	private String umpire1;
 	private String umpire2;
 	private String tossWinner;
@@ -151,14 +151,14 @@ public class Match implements Comparable<Match> {
 	/**
 	 * @return the resultMargin
 	 */
-	public String getResultMargin() {
+	public int getResultMargin() {
 		return resultMargin;
 	}
 
 	/**
 	 * @param resultMargin the resultMargin to set
 	 */
-	public void setResultMargin(String resultMargin) {
+	public void setResultMargin(int resultMargin) {
 		this.resultMargin = resultMargin;
 	}
 

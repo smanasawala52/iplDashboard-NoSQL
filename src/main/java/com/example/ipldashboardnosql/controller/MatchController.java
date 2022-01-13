@@ -35,7 +35,7 @@ public class MatchController {
 
 	@GetMapping("/matches/{id}")
 	public ModelAndView getMatchDetails(@PathVariable("id") String id) {
-		ModelAndView modelAndView = new ModelAndView("matchDetails");
+		ModelAndView modelAndView = new ModelAndView("matchDetailsJson");
 		modelAndView.addObject("match", matchService.getMatchDetails(id));
 		return modelAndView;
 	}
